@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFD607</color>
+    <color name="colorPrimaryDark">#FFA200</color>
+    <color name="colorAccent">#F49403</color>
+
+    <color name="colorPrimarySplash">#FFEB3B</color>
+    <color name="colorPrimaryDarkSplash">#FFC107</color>
+    <color name="colorAccentSplash">#FF9800</color>
+
+
+    <color name="iron">#CCCCCC</color>
+    <color name="primary">#E43F3F</color>
+</resources>

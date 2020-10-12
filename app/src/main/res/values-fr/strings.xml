@@ -1,0 +1,133 @@
+<resources>
+    <string name="app_name">Calendrier</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Ouvrir le tiroir de navigation</string>
+    <string name="nav_header_title">Studio Android</string>
+    <string name="nav_header_desc">En-tête de navigation</string>
+    <string name="action_settings">Réglages</string>
+
+    <!-- Fragments strings -->
+    <string name="monday">Lundi</string>
+    <string name="tuesday">Mardi</string>
+    <string name="wednesday">Mercredi</string>
+    <string name="thursday">Jeudi</string>
+    <string name="friday">Vendredi</string>
+    <string name="saturday">samedi</string>
+    <string name="sunday">dimanche</string>
+    <string name="select_snackbar">Veuillez sélectionner un élément.</string>
+    <string name="selected">Choisie</string>
+
+    <!-- Main Activity strings -->
+    <string name="timetable">Calendrier</string>
+    <string name="ulan_nurymov_gmail_com">ulan.nurymov@gmail.com</string>
+    <string name="seven_days_of_the_week">7 jours de la semaine</string>
+    <string name="subject">Matière</string>
+    <string name="field_error">le champ ne peut pas être vide!</string>
+    <string name="time_error">Le champ de temps ne peut pas être vide!</string>
+    <string name="week">La semaine</string>
+    <string name="delete">Effacer</string>
+    <string name="edit">Éditer</string>
+    <string name="school_website">Site Web de l\'école</string>
+    <string name="school_website_snackbar">Veuillez définir l\'URL du site Web de votre école dans les paramètres.</string>
+
+    <string name="add_subject">Ajouter un sujet</string>
+    <string name="edit_subject">Modifier le sujet</string>
+    <string name="teacher">Professeure</string>
+    <string name="room">Chambre</string>
+    <string name="time">Temps</string>
+    <string name="save">sauvegarder</string>
+    <string name="cancel">Annuler</string>
+    <string name="time_to_dialog">À:</string>
+    <string name="time_from_dialog">De:</string>
+    <string name="subject_dialog">Matière:</string>
+    <string name="teacher_dialog">Professeure:</string>
+    <string name="room_dialog">Chambre:</string>
+    <string name="select_time">Sélectionnez l\'heure</string>
+    <string name="select_color">Sélectionnez la couleur</string>
+    <string name="choose_time">Choisissez l\'heure</string>
+    <string name="choose_date">Choisissez la date</string>
+    <string name="choose_color">Choisissez la couleur</string>
+
+    <!-- Tasks Activity strings -->
+    <string name="title_activity_tasks">TâchesActivité</string>
+    <string name="tasks">Tâches</string>
+    <string name="select_date">Sélectionner une date</string>
+    <string name="deadline_dialog">Date limite:</string>
+    <string name="deadline">Date limite</string>
+    <string name="description_dialog">La description:</string>
+    <string name="desctiption">La description</string>
+    <string name="date_error">Le champ de date ne peut pas être vide!</string>
+    <string name="edit_task">Modifier la tâche</string>
+    <string name="add_task">Ajouter une tâche</string>
+    <string name="deadline_snackbar">Le champ Date limite ne peut pas être vide!</string>
+    <string name="date">Date</string>
+
+    <!-- Notes Activity strings -->
+    <string name="notes">Remarques</string>
+    <string name="title_dialog">Titre:</string>
+    <string name="add_note">Ajouter une note</string>
+    <string name="edit_note">Note éditée</string>
+    <string name="title_error">Le champ de titre ne peut pas être vide!</string>
+    <string name="title">Titre</string>
+    <string name="saved">Enregistrée</string>
+
+    <!-- Contacts Activity strings -->
+    <string name="contacts">Contacts</string>
+    <string name="add_contact">Ajouter le contact</string>
+    <string name="edit_contact">Modifier le contact</string>
+    <string name="name_dialog">Nom:</string>
+    <string name="post_dialog">Publier:</string>
+    <string name="phonenumber_dialog">Téléphone:</string>
+    <string name="email_dialog">Email:</string>
+    <string name="name">Nom</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="post">Publier</string>
+    <string name="email">Email</string>
+
+    <!-- Events Activity strings -->
+    <string name="events">Événements</string>
+    <string name="add_event">Ajouter un évènement</string>
+    <string name="date_dialog">Date:</string>
+    <string name="time_dialog">Temps:</string>
+
+    <!-- Settings Activity strings -->
+    <string name="sevendays_setting">Activer 7 jours de la semaine</string>
+    <string name="school_website_setting">Changer le site Web de l\'école</string>
+    <string name="school_website_setting_summary">Modifier l\'URL du site Web de votre école</string>
+
+    <!-- Notification -->
+    <string name="notification_title">Les leçons d\'aujourd\'hui</string>
+    <string name="do_not_have_lessons">Vous n\'avez pas de cours!</string>
+    <string name="logo_word">La technologie change la vie!</string>
+    <string name="login_label">S\'identifier</string>
+    <string name="login_title">Système de calendrier des algorithmes de fluides</string>
+    <string name="user_id">ID étudiant / ID enseignant</string>
+    <string name="register_hint">Enregistrez votre compte ici!</string>
+    <string name="login">S\'identifier</string>
+    <string name="hint_name">Nom</string>
+    <string name="hint_organisation_name">Nom de l\'organisme</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="create_account">Créer un compte</string>
+    <string name="register">Déjà membre? S\'identifier</string>
+    <string name="hint_confirm_password">Confirmez le mot de passe</string>
+    <string name="event">Nom de l\'événement</string>
+    <string name="host">Hôtesse</string>
+    <string name="location">Emplacement</string>
+    <string name="event_dialog">un événement:</string>
+    <string name="host_dialog">Nom de l\'événement:</string>
+    <string name="location_dialog">Emplacement</string>
+    <string name="task_dialog">Nom de la tâche:</string>
+    <string name="type_dialog">Type:</string>
+    <string name="task">Nom de la tâche</string>
+    <string name="type">Type</string>
+    <string name="organisation">Organisation</string>
+    <string name="organisation_dialog">Organisation:</string>
+    <string name="topic_dialog">Sujette:</string>
+    <string name="duration_dialog">Durée:</string>
+    <string name="topic">Sujette</string>
+    <string name="duration">Durée</string>
+    <string name="appointments">Rendez-vous</string>
+    <string name="add_appointment">Ajouter un rendez-vous</string>
+
+
+</resources>
