@@ -22,9 +22,6 @@ import com.ulan.timetable.utils.DbHelper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Created by Ulan on 21.09.2018.
- */
 public class TasksAdapter extends ArrayAdapter<Task> {
 
     private Activity mActivity;
@@ -58,8 +55,9 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         String type = Objects.requireNonNull(getItem(position)).getType();
         String date = Objects.requireNonNull(getItem(position)).getDuedate();
         int color = Objects.requireNonNull(getItem(position)).getColor();
+        String uid = Objects.requireNonNull(getItem(position)).getUid();
 
-        task = new Task(name, description, type, date, color);
+        task = new Task(name, description, type, date, color, uid);
         final ViewHolder holder;
 
         if(convertView == null){

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
         android:id="@+id/events_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="horizontal"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="5dp">
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintEnd_toStartOf="@+id/popupbtn" />
+                app:layout_constraintEnd_toStartOf="@+id/popupbtn" />
 
             <View
                 android:id="@+id/line"
@@ -51,9 +51,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="2dp"
                 android:background="@android:color/black"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@id/eventevents" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventevents" />
 
             <TextView
                 android:id="@+id/hostevents"
@@ -67,10 +67,10 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintHorizontal_bias="0.466"
-                card_view:layout_constraintStart_toEndOf="@+id/imageView2"
-                card_view:layout_constraintTop_toBottomOf="@+id/line" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/line" />
 
             <TextView
                 android:id="@+id/locationevents"
@@ -84,13 +84,13 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                card_view:layout_constraintEnd_toEndOf="@+id/hostevents"
-                card_view:layout_constraintStart_toEndOf="@+id/imageView"
-                card_view:layout_constraintTop_toBottomOf="@+id/hostevents"
-                card_view:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toEndOf="@+id/hostevents"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/hostevents"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/dateevents"
+                android:id="@+id/timeevents"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -101,12 +101,13 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@+id/locationevents"
-                card_view:layout_constraintEnd_toStartOf="@+id/guideline2"
-                card_view:layout_constraintStart_toEndOf="@+id/imageView3" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/locationevents" />
 
             <TextView
-                android:id="@+id/timeevents"
+                android:id="@+id/dateevents"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -117,8 +118,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@+id/locationevents"
-                card_view:layout_constraintEnd_toEndOf="@+id/hostevents"
-                card_view:layout_constraintStart_toStartOf="@+id/guideline2" />
+                app:layout_constraintEnd_toEndOf="@+id/hostevents"
+                app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline2"
@@ -133,9 +134,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
                 android:background="?selectableItemBackgroundBorderless"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="@+id/eventevents"
-                card_view:srcCompat="@drawable/baseline_expand_more_black_24" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/eventevents"
+                app:srcCompat="@drawable/baseline_expand_more_black_24" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -143,24 +144,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:srcCompat="@drawable/baseline_room_black_24"
-                card_view:layout_constraintStart_toStartOf="@+id/line"
-                card_view:layout_constraintTop_toBottomOf="@+id/hostevents" />
+                app:layout_constraintStart_toStartOf="@+id/line"
+                app:layout_constraintTop_toBottomOf="@+id/hostevents" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/baseline_person_black_24"
-                card_view:layout_constraintStart_toStartOf="@+id/line"
-                card_view:layout_constraintTop_toTopOf="@+id/hostevents" />
+                app:layout_constraintStart_toStartOf="@+id/line"
+                app:layout_constraintTop_toTopOf="@+id/hostevents" />
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/baseline_access_time_black_24"
-                card_view:layout_constraintStart_toStartOf="@+id/imageView"
-                card_view:layout_constraintTop_toTopOf="@+id/dateevents" />
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/timeevents" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

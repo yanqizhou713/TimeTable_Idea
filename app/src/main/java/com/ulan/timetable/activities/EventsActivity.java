@@ -43,7 +43,8 @@ public class EventsActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.eventslist);
-        adapter = new EventsAdapter(EventsActivity.this, listView, R.layout.listview_events_adapter, db.getEvent());
+        String uid = TempActivity.textView1.getText().toString();
+        adapter = new EventsAdapter(EventsActivity.this, listView, R.layout.listview_events_adapter, db.getEvent(uid));
         listView.setAdapter(adapter);
     }
 

@@ -45,7 +45,8 @@ public class ContactsActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.contactlist);
-        adapter = new ContactsAdapter(ContactsActivity.this, listView, R.layout.listview_contacts_adapter, db.getContact());
+        String uid = TempActivity.textView1.getText().toString();
+        adapter = new ContactsAdapter(ContactsActivity.this, listView, R.layout.listview_contacts_adapter, db.getContact(uid));
         listView.setAdapter(adapter);
     }
 

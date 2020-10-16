@@ -22,9 +22,6 @@ import com.ulan.timetable.utils.DbHelper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Created by Ulan on 17.12.2018.
- */
 public class EventsAdapter extends ArrayAdapter<Event> {
 
     private Activity mActivity;
@@ -59,9 +56,10 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         String location = Objects.requireNonNull(getItem(position)).getLocation();
         String date = Objects.requireNonNull(getItem(position)).getDate();
         String time = Objects.requireNonNull(getItem(position)).getTime();
+        String uid = Objects.requireNonNull(getItem(position)).getUid();
         int color = Objects.requireNonNull(getItem(position)).getColor();
 
-        event = new Event(name, host, date, time, location, color);
+        event = new Event(name, host, date, time, location, color, uid);
         final ViewHolder holder;
 
         if (convertView == null) {

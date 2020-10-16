@@ -4,14 +4,13 @@ package com.ulan.timetable.model;
  * Created by Idea 06/10/2020
  */
 public class User {
-    private String name, userID, organisation, password;
-    private int uid;
+    private String uid, name, organisation, password;
 
     public User() {}
 
-    public User(String name, String userID, String organisation, String password) {
+    public User(String uid, String name, String organisation, String password) {
+        this.uid = uid;
         this.name = name;
-        this.userID = userID;
         this.organisation = organisation;
         this.password = password;
     }
@@ -24,13 +23,6 @@ public class User {
         this.name = name;
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
 
     public String getOrganisation() {
         return organisation;
@@ -48,11 +40,11 @@ public class User {
         this.password = password;
     }
 
-    public int getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 }

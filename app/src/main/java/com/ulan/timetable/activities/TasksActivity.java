@@ -45,7 +45,8 @@ public class TasksActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.tasklist);
-        adapter = new TasksAdapter(TasksActivity.this, listView, R.layout.listview_tasks_adapter, db.getTask());
+        String uid = TempActivity.textView1.getText().toString();
+        adapter = new TasksAdapter(TasksActivity.this, listView, R.layout.listview_tasks_adapter, db.getTask(uid));
         listView.setAdapter(adapter);
     }
 

@@ -1,12 +1,12 @@
 package com.ulan.timetable.model;
 
 public class Appointment {
-    private String topic, teacher, room, date, time, duration;
+    private String topic, teacher, room, date, time, duration, uid;
     private int aid, color;
 
     public Appointment() {
     }
-    public Appointment(String topic, String teacher, String room, String date, String time, String duration, int color) {
+    public Appointment(String topic, String teacher, String room, String date, String time, String duration, int color, String uid) {
         this.topic = topic;
         this.teacher = teacher;
         this.room = room;
@@ -14,6 +14,7 @@ public class Appointment {
         this.time = time;
         this.duration = duration;
         this.color = color;
+        this.uid = uid;
     }
 
     public String getTopic() {
@@ -78,5 +79,13 @@ public class Appointment {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

@@ -1,17 +1,22 @@
 package com.ulan.timetable.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.ulan.timetable.activities.TempActivity;
 import com.ulan.timetable.adapters.WeekAdapter;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.R;
 import com.ulan.timetable.utils.FragmentHelper;
+
 
 
 public class MondayFragment extends Fragment {
@@ -35,7 +40,8 @@ public class MondayFragment extends Fragment {
     private void setupAdapter(View view) {
         db = new DbHelper(getActivity());
         listView = view.findViewById(R.id.mondaylist);
-        adapter = new WeekAdapter(getActivity(), listView, R.layout.listview_week_adapter, db.getWeek(KEY_MONDAY_FRAGMENT));
+        String uid = db.getUid(TempActivity.textView.getText().toString());
+        adapter = new WeekAdapter(getActivity(), listView, R.layout.listview_week_adapter, db.getWeek(KEY_MONDAY_FRAGMENT, uid));
         listView.setAdapter(adapter);
     }
 

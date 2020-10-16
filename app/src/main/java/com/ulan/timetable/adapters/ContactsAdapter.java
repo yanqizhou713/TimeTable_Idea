@@ -22,9 +22,6 @@ import com.ulan.timetable.utils.DbHelper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Created by Ulan on 08.10.2018.
- */
 public class ContactsAdapter extends ArrayAdapter<Contact> {
 
     private Activity mActivity;
@@ -57,9 +54,10 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
         String organisation = Objects.requireNonNull(getItem(position)).getOrganisation();
         String phonenumber = Objects.requireNonNull(getItem(position)).getPhonenumber();
         String email = Objects.requireNonNull(getItem(position)).getEmail();
+        String uid = Objects.requireNonNull(getItem(position)).getUid();
         int color = Objects.requireNonNull(getItem(position)).getColor();
 
-        contact = new Contact(name, organisation, phonenumber, email, color);
+        contact = new Contact(name, organisation, phonenumber, email, color, uid);
         final ViewHolder holder;
 
         if(convertView == null){

@@ -35,6 +35,7 @@
     <string name="teacher">Teacher</string>
     <string name="room">Room</string>
     <string name="time">Time</string>
+    <string name="userID">Student ID</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="time_to_dialog">To:</string>
@@ -128,6 +129,15 @@
     <string name="duration">Duration</string>
     <string name="appointments">Appointments</string>
     <string name="add_appointment">Add Appointment</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook_setting">Change facebook website</string>
+    <string name="twitter_setting">Change twitter website</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="userID_dialog">Student ID:</string>
+    <string name="semester">Semester</string>
+    <string name="score">Score</string>
+    <string name="results">Results</string>
 
 
 </resources>

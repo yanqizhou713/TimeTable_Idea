@@ -1,17 +1,18 @@
 package com.ulan.timetable.model;
 
 public class Contact {
-    private String name, organisation, phonenumber, email;
+    private String name, organisation, phonenumber, email, uid;
     private int cid, color;
 
     public Contact() {
     }
-    public Contact(String name, String organisation, String phonenumber, String email, int color) {
+    public Contact(String name, String organisation, String phonenumber, String email, int color, String uid) {
         this.name = name;
         this.organisation = organisation;
         this.phonenumber = phonenumber;
         this.email = email;
         this.color = color;
+        this.uid = uid;
     }
 
     public String getName() {
@@ -61,5 +62,13 @@ public class Contact {
 
     public void setCid(int cid) {
         this.cid = cid;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

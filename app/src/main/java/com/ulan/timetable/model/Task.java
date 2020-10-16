@@ -1,17 +1,18 @@
 package com.ulan.timetable.model;
 
 public class Task {
-    private String name, description, type, duedate;
+    private String name, description, type, duedate, uid;
     private int id, color;
 
     public Task() {}
 
-    public Task(String name, String description, String type, String duedate, int color) {
+    public Task(String name, String description, String type, String duedate, int color, String uid) {
         this.name = name;
         this.description = description;
         this.type = type;
         this.duedate = duedate;
         this.color = color;
+        this.uid = uid;
     }
 
     public String getDescription() {
@@ -60,5 +61,13 @@ public class Task {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

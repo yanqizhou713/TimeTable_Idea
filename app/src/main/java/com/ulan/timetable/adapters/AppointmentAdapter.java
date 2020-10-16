@@ -58,10 +58,11 @@ public class AppointmentAdapter extends ArrayAdapter<Appointment> {
         String date = Objects.requireNonNull(getItem(position)).getDate();
         String time = Objects.requireNonNull(getItem(position)).getTime();
         String duration = Objects.requireNonNull(getItem(position)).getDuration();
+        String uid = null;
 
         int color = Objects.requireNonNull(getItem(position)).getColor();
 
-        appointment = new Appointment(topic, teacher, room,  date, time, duration, color);
+        appointment = new Appointment(topic, teacher, room,  date, time, duration, color, uid);
         final ViewHolder holder;
 
         if (convertView == null) {

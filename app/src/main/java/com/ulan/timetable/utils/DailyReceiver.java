@@ -10,16 +10,16 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.INotificationSideChannel;
 import android.support.v4.app.NotificationCompat;
+import android.widget.TextView;
 
 import com.ulan.timetable.activities.MainActivity;
 import com.ulan.timetable.R;
+import com.ulan.timetable.activities.TempActivity;
 
 import java.util.Calendar;
 
-/**
- * Created by Ulan on 28.01.2019.
- */
 public class DailyReceiver extends BroadcastReceiver {
 
     Context context;
@@ -29,7 +29,6 @@ public class DailyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         this.context = context;
-
         String message ;
 
         long when = System.currentTimeMillis();
@@ -47,40 +46,39 @@ public class DailyReceiver extends BroadcastReceiver {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
 
-        message = getLessons(day);
-
-        NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(
-                context, "").setSmallIcon(R.mipmap.ic_launcher_round)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
-                .setContentTitle(context.getString(R.string.notification_title))
-                .setContentText(message).setSound(alarmSound)
-                .setAutoCancel(true).setWhen(when)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
-                .setContentIntent(pendingIntent)
-                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
-        if (notificationManager != null) {
-            notificationManager.notify(5, mNotifyBuilder.build());
-        }
+//        message = getLessons(day);
+//
+//        NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(
+//                context, "").setSmallIcon(R.mipmap.ic_launcher_round)
+//                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
+//                .setContentTitle(context.getString(R.string.notification_title))
+//                .setContentText(message).setSound(alarmSound)
+//                .setAutoCancel(true).setWhen(when)
+//                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+//                .setContentIntent(pendingIntent)
+//                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+//        if (notificationManager != null) {
+//            notificationManager.notify(5, mNotifyBuilder.build());
+//        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private String getLessons(int day) {
-        StringBuilder lessons = new StringBuilder("");
-        String currentDay = getCurrentDay(day);
-
-        db.getWeek(currentDay).forEach(week -> {
-            if(week != null) {
-                lessons.append(week.getSubject()).append(" ")
-                        .append(week.getFromTime())
-                        .append(" - ")
-                        .append(week.getToTime()).append(" ")
-                        .append(week.getRoom())
-                        .append("\n");
-            }
-        });
-
-        return !lessons.toString().equals("") ? lessons.toString() : context.getString(R.string.do_not_have_lessons);
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private String getLessons(int day) {
+//        StringBuilder lessons = new StringBuilder("");
+//        String currentDay = getCurrentDay(day);
+//        db.getWeek(currentDay, uid).forEach(week -> {
+//            if(week != null) {
+//                lessons.append(week.getSubject()).append(" ")
+//                        .append(week.getFromTime())
+//                        .append(" - ")
+//                        .append(week.getToTime()).append(" ")
+//                        .append(week.getRoom())
+//                        .append("\n");
+//            }
+//        });
+//
+//        return !lessons.toString().equals("") ? lessons.toString() : context.getString(R.string.do_not_have_lessons);
+//    }
 
     private String getCurrentDay(int day) {
         String currentDay = null;

@@ -9,13 +9,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ulan on 05.09.2018.
- */
 public class FragmentsTabAdapter  extends FragmentStatePagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
+
 
     public FragmentsTabAdapter(FragmentManager fm) {
         super(fm);

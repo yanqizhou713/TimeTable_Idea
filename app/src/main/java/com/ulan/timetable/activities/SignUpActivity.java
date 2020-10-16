@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
         String passsword = passwordText.getText().toString();
 
 
-        boolean status = db.addUser(name, userID, organisation, passsword);
+        boolean status = db.addUser(userID, name, organisation, passsword);
         if(status) {
             new android.os.Handler().postDelayed(
                     new Runnable() {

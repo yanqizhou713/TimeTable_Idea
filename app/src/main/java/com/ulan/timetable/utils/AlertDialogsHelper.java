@@ -24,12 +24,14 @@ import com.ulan.timetable.adapters.ContactsAdapter;
 import com.ulan.timetable.adapters.EventsAdapter;
 import com.ulan.timetable.adapters.FragmentsTabAdapter;
 import com.ulan.timetable.adapters.NotesAdapter;
+import com.ulan.timetable.adapters.ResultsAdapter;
 import com.ulan.timetable.adapters.TasksAdapter;
 import com.ulan.timetable.adapters.WeekAdapter;
 import com.ulan.timetable.model.Appointment;
 import com.ulan.timetable.model.Contact;
 import com.ulan.timetable.model.Event;
 import com.ulan.timetable.model.Note;
+import com.ulan.timetable.model.Result;
 import com.ulan.timetable.model.Task;
 import com.ulan.timetable.model.Week;
 import com.ulan.timetable.R;
@@ -45,9 +47,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-/**
- * Created by Ulan on 22.10.2018.
- */
 public class AlertDialogsHelper {
 
     public static void getEditSubjectDialog(final Activity activity, final View alertLayout, final ArrayList<Week> adapter, final ListView listView, int position) {
@@ -61,6 +60,8 @@ public class AlertDialogsHelper {
         final TextView from_time = alertLayout.findViewById(R.id.from_time);
         final TextView to_time = alertLayout.findViewById(R.id.to_time);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
+        final EditText userID = alertLayout.findViewById(R.id.userID_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Week week = adapter.get(position);
 
         subject.setText(week.getSubject());
@@ -69,6 +70,7 @@ public class AlertDialogsHelper {
         from_time.setText(week.getFromTime());
         to_time.setText(week.getToTime());
         select_color.setBackgroundColor(week.getColor() != 0 ? week.getColor() : Color.WHITE);
+        userID.setText(week.getUid());
 
         from_time.setOnClickListener(new View.OnClickListener() {
 
@@ -157,7 +159,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(subject.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText())) {
+                if(TextUtils.isEmpty(subject.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -174,6 +176,7 @@ public class AlertDialogsHelper {
                     week.setTeacher(teacher.getText().toString());
                     week.setRoom(room.getText().toString());
                     week.setColor(buttonColor.getColor());
+                    week.setUid(userID.getText().toString());
                     db.updateWeek(week);
                     weekAdapter.notifyDataSetChanged();
                     dialog.dismiss();
@@ -193,6 +196,8 @@ public class AlertDialogsHelper {
         final TextView from_time = alertLayout.findViewById(R.id.from_time);
         final TextView to_time = alertLayout.findViewById(R.id.to_time);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
+        final EditText userID = alertLayout.findViewById(R.id.userID_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Week week = new Week();
 
         from_time.setOnClickListener(new View.OnClickListener() {
@@ -284,7 +289,7 @@ public class AlertDialogsHelper {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(subject.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText())) {
+                if(TextUtils.isEmpty(subject.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -302,6 +307,7 @@ public class AlertDialogsHelper {
                     week.setTeacher(teacher.getText().toString());
                     week.setRoom(room.getText().toString());
                     week.setColor(buttonColor.getColor());
+                    week.setUid(userID.getText().toString());
                     dbHelper.insertWeek(week);
                     adapter.notifyDataSetChanged();
                     subject.getText().clear();
@@ -326,6 +332,8 @@ public class AlertDialogsHelper {
         final EditText type = alertLayout.findViewById(R.id.typetask);
         editTextHashs.put(R.string.type, type);
         final TextView date = alertLayout.findViewById(R.id.datetask);
+        final EditText userID = alertLayout.findViewById(R.id.userIDtask);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Task task = adapter.get(listposition);
 
@@ -333,6 +341,7 @@ public class AlertDialogsHelper {
         description.setText(task.getDescription());
         type.setText(task.getType());
         date.setText(task.getDuedate());
+        userID.setText(task.getUid());
         select_color.setBackgroundColor(task.getColor() != 0 ? task.getColor() : Color.WHITE);
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -397,7 +406,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(description.getText()) || TextUtils.isEmpty(type.getText())) {
+                if (TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(description.getText()) || TextUtils.isEmpty(type.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> editText : editTextHashs.entrySet()) {
                         if (TextUtils.isEmpty(editText.getValue().getText())) {
                             editText.getValue().setError(activity.getResources().getString(editText.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -413,6 +422,7 @@ public class AlertDialogsHelper {
                     task.setName(name.getText().toString());
                     task.setDescription(description.getText().toString());
                     task.setType(type.getText().toString());
+                    task.setUid(userID.getText().toString());
                     task.setColor(buttonColor.getColor());
                     dbHelper.updateTask(task);
                     tasksAdapter.notifyDataSetChanged();
@@ -431,6 +441,8 @@ public class AlertDialogsHelper {
         final EditText type = alertLayout.findViewById(R.id.typetask);
         editTextHashs.put(R.string.type, type);
         final TextView date = alertLayout.findViewById(R.id.datetask);
+        final EditText userID = alertLayout.findViewById(R.id.userIDtask);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Task task = new Task();
 
@@ -502,7 +514,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(description.getText()) || TextUtils.isEmpty(type.getText())) {
+                if(TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(description.getText()) || TextUtils.isEmpty(type.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> editText : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(editText.getValue().getText())) {
                             editText.getValue().setError(activity.getResources().getString(editText.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -517,17 +529,19 @@ public class AlertDialogsHelper {
                     task.setName(name.getText().toString());
                     task.setDescription(description.getText().toString());
                     task.setType(type.getText().toString());
+                    task.setUid(userID.getText().toString());
                     task.setColor(buttonColor.getColor());
                     dbHelper.insertTask(task);
 
                     adapter.clear();
-                    adapter.addAll(dbHelper.getTask());
+                    adapter.addAll(dbHelper.getTask(userID.getText().toString()));
                     adapter.notifyDataSetChanged();
 
                     name.getText().clear();
                     description.getText().clear();
                     type.getText().clear();
                     date.setText(R.string.select_date);
+                    userID.getText().clear();
                     select_color.setBackgroundColor(Color.WHITE);
                     name.requestFocus();
                     dialog.dismiss();
@@ -546,6 +560,8 @@ public class AlertDialogsHelper {
         editTextHashs.put(R.string.phone_number, phone_number);
         final EditText email = alertLayout.findViewById(R.id.email_dialog);
         editTextHashs.put(R.string.email, email);
+        final EditText userID = alertLayout.findViewById(R.id.uid_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Contact contact = adapter.get(listposition);
 
@@ -553,6 +569,7 @@ public class AlertDialogsHelper {
         organisation.setText(contact.getOrganisation());
         phone_number.setText(contact.getPhonenumber());
         email.setText(contact.getEmail());
+        userID.setText(contact.getUid());
         select_color.setBackgroundColor(contact.getColor() != 0 ? contact.getColor() : Color.WHITE);
 
         select_color.setOnClickListener(new View.OnClickListener() {
@@ -598,7 +615,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(organisation.getText()) || TextUtils.isEmpty(phone_number.getText()) || TextUtils.isEmpty(email.getText())) {
+                if(TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(organisation.getText()) || TextUtils.isEmpty(phone_number.getText()) || TextUtils.isEmpty(email.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -607,15 +624,16 @@ public class AlertDialogsHelper {
                     }
                 } else {
                     DbHelper dbHelper = new DbHelper(activity);
-                    ContactsAdapter teachersAdapter = (ContactsAdapter) listView.getAdapter();
+                    ContactsAdapter contactsAdapter = (ContactsAdapter) listView.getAdapter();
                     ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                     contact.setName(name.getText().toString());
                     contact.setOrganisation(organisation.getText().toString());
                     contact.setPhonenumber(phone_number.getText().toString());
                     contact.setEmail(email.getText().toString());
+                    contact.setUid(userID.getText().toString());
                     contact.setColor(buttonColor.getColor());
                     dbHelper.updateContact(contact);
-                    teachersAdapter.notifyDataSetChanged();
+                    contactsAdapter.notifyDataSetChanged();
                     dialog.dismiss();
                 }
             }
@@ -632,6 +650,8 @@ public class AlertDialogsHelper {
         editTextHashs.put(R.string.phone_number, phone_number);
         final EditText email = alertLayout.findViewById(R.id.email_dialog);
         editTextHashs.put(R.string.email, email);
+        final EditText userID = alertLayout.findViewById(R.id.uid_dialog);
+        editTextHashs.put(R.string.userID, email);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Contact contact = new Contact();
 
@@ -684,7 +704,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(organisation.getText()) || TextUtils.isEmpty(phone_number.getText()) || TextUtils.isEmpty(email.getText())) {
+                if(TextUtils.isEmpty(name.getText()) || TextUtils.isEmpty(organisation.getText()) || TextUtils.isEmpty(phone_number.getText()) || TextUtils.isEmpty(email.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -698,17 +718,19 @@ public class AlertDialogsHelper {
                     contact.setOrganisation(organisation.getText().toString());
                     contact.setPhonenumber(phone_number.getText().toString());
                     contact.setEmail(email.getText().toString());
+                    contact.setUid(userID.getText().toString());
                     contact.setColor(buttonColor.getColor());
                     dbHelper.insertContact(contact);
 
                     adapter.clear();
-                    adapter.addAll(dbHelper.getContact());
+                    adapter.addAll(dbHelper.getContact(userID.getText().toString()));
                     adapter.notifyDataSetChanged();
 
                     name.getText().clear();
                     organisation.getText().clear();
                     phone_number.getText().clear();
                     email.getText().clear();
+                    userID.getText().clear();
                     select_color.setBackgroundColor(Color.WHITE);
                     name.requestFocus();
                     dialog.dismiss();
@@ -718,10 +740,15 @@ public class AlertDialogsHelper {
     }
 
     public static void getEditNoteDialog(final Activity activity, final View alertLayout, final ArrayList<Note> adapter, final ListView listView, int listposition) {
+        final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText title = alertLayout.findViewById(R.id.titlenote);
+        editTextHashs.put(R.string.title, title);
+        final EditText userID = alertLayout.findViewById(R.id.userIDnote);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Note note = adapter.get(listposition);
         title.setText(note.getTitle());
+        userID.setText(note.getUid());
         select_color.setBackgroundColor(note.getColor() != 0 ? note.getColor() : Color.WHITE);
 
         select_color.setOnClickListener(new View.OnClickListener() {
@@ -767,13 +794,14 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(title.getText())) {
+                if(TextUtils.isEmpty(title.getText()) || TextUtils.isEmpty(userID.getText())) {
                     title.setError(activity.getResources().getString(R.string.title_error));
                     title.requestFocus();
                 } else {
                     DbHelper dbHelper = new DbHelper(activity);
                     ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                     note.setTitle(title.getText().toString());
+                    note.setUid(userID.getText().toString());
                     note.setColor(buttonColor.getColor());
                     dbHelper.updateNote(note);
                     NotesAdapter notesAdapter = (NotesAdapter) listView.getAdapter();
@@ -786,7 +814,11 @@ public class AlertDialogsHelper {
     }
 
     public static void getAddNoteDialog(final Activity activity, final View alertLayout, final NotesAdapter adapter) {
+        final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText title = alertLayout.findViewById(R.id.titlenote);
+        editTextHashs.put(R.string.title, title);
+        final EditText userID = alertLayout.findViewById(R.id.userIDnote);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Note note = new Note();
 
@@ -839,21 +871,23 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(title.getText())) {
+                if(TextUtils.isEmpty(title.getText()) || TextUtils.isEmpty(userID.getText())) {
                     title.setError(activity.getResources().getString(R.string.title_error));
                     title.requestFocus();
                 } else {
                     DbHelper dbHelper = new DbHelper(activity);
                     ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                     note.setTitle(title.getText().toString());
+                    note.setUid(userID.getText().toString());
                     note.setColor(buttonColor.getColor());
                     dbHelper.insertNote(note);
 
                     adapter.clear();
-                    adapter.addAll(dbHelper.getNote());
+                    adapter.addAll(dbHelper.getNote(userID.getText().toString()));
                     adapter.notifyDataSetChanged();
 
                     title.getText().clear();
+                    userID.getText().clear();
                     select_color.setBackgroundColor(Color.WHITE);
                     dialog.dismiss();
                 }
@@ -872,6 +906,8 @@ public class AlertDialogsHelper {
         editTextHashs.put(R.string.location, location);
         final TextView date = alertLayout.findViewById(R.id.dateevent_dialog);
         final TextView time = alertLayout.findViewById(R.id.timeevent_dialog);
+        final EditText userID = alertLayout.findViewById(R.id.userIDevent_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Event event = adapter.get(listposition);
 
@@ -880,6 +916,7 @@ public class AlertDialogsHelper {
         location.setText(event.getLocation());
         date.setText(event.getDate());
         time.setText(event.getTime());
+        userID.setText(event.getUid());
         select_color.setBackgroundColor(event.getColor());
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -966,7 +1003,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(events.getText()) || TextUtils.isEmpty(host.getText()) || TextUtils.isEmpty(location.getText())) {
+                if(TextUtils.isEmpty(events.getText()) || TextUtils.isEmpty(host.getText()) || TextUtils.isEmpty(location.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -983,6 +1020,7 @@ public class AlertDialogsHelper {
                     event.setName(events.getText().toString());
                     event.setHost(host.getText().toString());
                     event.setLocation(location.getText().toString());
+                    event.setUid(userID.getText().toString());
                     event.setColor(buttonColor.getColor());
 
                     dbHelper.updateEvent(event);
@@ -1006,6 +1044,8 @@ public class AlertDialogsHelper {
         editTextHashs.put(R.string.location, location);
         final TextView date = alertLayout.findViewById(R.id.dateevent_dialog);
         final TextView time = alertLayout.findViewById(R.id.timeevent_dialog);
+        final EditText userID = alertLayout.findViewById(R.id.userIDevent_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Event event = new Event();
 
@@ -1099,7 +1139,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(events.getText()) || TextUtils.isEmpty(host.getText()) || TextUtils.isEmpty(location.getText())) {
+                if(TextUtils.isEmpty(events.getText()) || TextUtils.isEmpty(host.getText()) || TextUtils.isEmpty(location.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -1116,12 +1156,13 @@ public class AlertDialogsHelper {
                     event.setName(events.getText().toString());
                     event.setHost(host.getText().toString());
                     event.setLocation(location.getText().toString());
+                    event.setUid(userID.getText().toString());
                     event.setColor(buttonColor.getColor());
 
                     dbHelper.insertEvent(event);
 
                     adapter.clear();
-                    adapter.addAll(dbHelper.getEvent());
+                    adapter.addAll(dbHelper.getEvent(userID.getText().toString()));
                     adapter.notifyDataSetChanged();
 
                     events.getText().clear();
@@ -1129,6 +1170,7 @@ public class AlertDialogsHelper {
                     location.getText().clear();
                     date.setText(R.string.select_date);
                     time.setText(R.string.select_time);
+                    userID.getText().clear();
                     select_color.setBackgroundColor(Color.WHITE);
                     events.requestFocus();
                     dialog.dismiss();
@@ -1150,6 +1192,8 @@ public class AlertDialogsHelper {
         final TextView time = alertLayout.findViewById(R.id.timeappointment_dialog);
         final EditText duration = alertLayout.findViewById(R.id.durationappointment_dialog);
         editTextHashs.put(R.string.duration, duration);
+        final EditText userID = alertLayout.findViewById(R.id.userIDappointment_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Appointment appointment = adapter.get(listposition);
 
@@ -1159,6 +1203,7 @@ public class AlertDialogsHelper {
         date.setText(appointment.getDate());
         time.setText(appointment.getTime());
         duration.setText(appointment.getDuration());
+        userID.setText(appointment.getUid());
         select_color.setBackgroundColor(appointment.getColor());
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -1245,7 +1290,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(topic.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText()) || TextUtils.isEmpty(duration.getText())) {
+                if(TextUtils.isEmpty(topic.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText()) || TextUtils.isEmpty(duration.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -1263,6 +1308,7 @@ public class AlertDialogsHelper {
                     appointment.setTeacher(teacher.getText().toString());
                     appointment.setRoom(room.getText().toString());
                     appointment.setDuration(duration.getText().toString());
+                    appointment.setUid(userID.getText().toString());
                     appointment.setColor(buttonColor.getColor());
 
                     dbHelper.updateAppointment(appointment);
@@ -1288,6 +1334,8 @@ public class AlertDialogsHelper {
         final TextView time = alertLayout.findViewById(R.id.timeappointment_dialog);
         final EditText duration = alertLayout.findViewById(R.id.durationappointment_dialog);
         editTextHashs.put(R.string.duration, duration);
+        final EditText userID = alertLayout.findViewById(R.id.userIDappointment_dialog);
+        editTextHashs.put(R.string.userID, userID);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Appointment appointment = new Appointment();
 
@@ -1381,7 +1429,7 @@ public class AlertDialogsHelper {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(topic.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText()) || TextUtils.isEmpty(duration.getText())) {
+                if(TextUtils.isEmpty(topic.getText()) || TextUtils.isEmpty(teacher.getText()) || TextUtils.isEmpty(room.getText()) || TextUtils.isEmpty(duration.getText()) || TextUtils.isEmpty(userID.getText())) {
                     for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
                         if(TextUtils.isEmpty(entry.getValue().getText())) {
                             entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
@@ -1399,12 +1447,13 @@ public class AlertDialogsHelper {
                     appointment.setTeacher(teacher.getText().toString());
                     appointment.setRoom(room.getText().toString());
                     appointment.setDuration(duration.getText().toString());
+                    appointment.setUid(userID.getText().toString());
                     appointment.setColor(buttonColor.getColor());
 
                     dbHelper.insertAppointment(appointment);
 
                     adapter.clear();
-                    adapter.addAll(dbHelper.getAppointment());
+                    adapter.addAll(dbHelper.getAppointment(userID.getText().toString()));
                     adapter.notifyDataSetChanged();
 
                     topic.getText().clear();

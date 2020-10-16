@@ -1,18 +1,19 @@
 package com.ulan.timetable.model;
 
 public class Event {
-    private String name, host, time, date, location;
+    private String name, host, time, date, location, uid;
     private int eid, color;
 
     public Event() {}
 
-    public Event(String name, String host, String time, String date, String location, int color) {
+    public Event(String name, String host, String time, String date, String location, int color, String uid) {
         this.name = name;
         this.host = host;
         this.time = time;
         this.date = date;
         this.location = location;
         this.color = color;
+        this.uid = uid;
     }
 
 
@@ -71,5 +72,13 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

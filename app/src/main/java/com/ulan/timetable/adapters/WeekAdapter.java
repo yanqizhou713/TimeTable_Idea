@@ -58,9 +58,10 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         String time_from = Objects.requireNonNull(getItem(position)).getFromTime();
         String time_to = Objects.requireNonNull(getItem(position)).getToTime();
         String room = Objects.requireNonNull(getItem(position)).getRoom();
+        String userID = Objects.requireNonNull(getItem(position)).getUid();
         int color = getItem(position).getColor();
 
-        week = new Week(subject, teacher, room, time_from, time_to, color);
+        week = new Week(subject, teacher, room, time_from, time_to, color, userID);
         final ViewHolder holder;
 
         if(convertView == null){

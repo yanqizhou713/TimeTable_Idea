@@ -4,15 +4,16 @@ package com.ulan.timetable.model;
 import java.io.Serializable;
 
 public class Note implements Serializable {
-    private String title, text = "";
+    private String title, text = "", uid;
     private int nid, color;
 
     public Note() {}
 
-    public Note(String title, String text, int color) {
+    public Note(String title, String text, int color, String uid) {
         this.title = title;
         this.text = text;
         this.color = color;
+        this.uid = uid;
     }
 
     public String getTitle() {
@@ -45,5 +46,13 @@ public class Note implements Serializable {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

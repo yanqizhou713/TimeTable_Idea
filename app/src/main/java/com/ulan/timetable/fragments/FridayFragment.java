@@ -5,8 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.ulan.timetable.activities.TempActivity;
 import com.ulan.timetable.adapters.WeekAdapter;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.R;
@@ -21,6 +24,7 @@ public class FridayFragment extends Fragment {
     private WeekAdapter adapter;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,7 +37,8 @@ public class FridayFragment extends Fragment {
     private void setupAdapter(View view) {
         db = new DbHelper(getActivity());
         listView = view.findViewById(R.id.fridaylist);
-        adapter = new WeekAdapter(getActivity(), listView, R.layout.listview_week_adapter, db.getWeek(KEY_FRIDAY_FRAGMENT));
+        String uid = db.getUid(TempActivity.textView.getText().toString());
+        adapter = new WeekAdapter(getActivity(), listView, R.layout.listview_week_adapter, db.getWeek(KEY_FRIDAY_FRAGMENT, uid));
         listView.setAdapter(adapter);
     }
 

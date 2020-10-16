@@ -23,10 +23,6 @@ import com.ulan.timetable.utils.DbHelper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
-/**
- * Created by Ulan on 28.09.2018.
- */
 public class NotesAdapter extends ArrayAdapter<Note> {
 
     private Activity mActivity;
@@ -55,8 +51,9 @@ public class NotesAdapter extends ArrayAdapter<Note> {
         String title = Objects.requireNonNull(getItem(position)).getTitle();
         String text = Objects.requireNonNull(getItem(position)).getText();
         int color = Objects.requireNonNull(getItem(position)).getColor();
+        String uid = Objects.requireNonNull(getItem(position)).getUid();
 
-        note = new Note(title, text, color);
+        note = new Note(title, text, color, uid);
         final ViewHolder holder;
 
         if(convertView == null) {

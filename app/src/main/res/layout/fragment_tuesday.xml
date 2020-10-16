@@ -13,4 +13,13 @@
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility = "gone"
+        android:text="a"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp" />
 </FrameLayout>

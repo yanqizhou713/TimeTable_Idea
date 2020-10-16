@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.show();
         if (status > 0) {
             onLoginSuccess();
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, TempActivity.class);
             intent.putExtra("userID", userID);
             startActivity(intent);
         } else {

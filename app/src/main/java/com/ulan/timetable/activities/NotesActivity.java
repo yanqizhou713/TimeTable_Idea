@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ulan.timetable.adapters.NotesAdapter;
 import com.ulan.timetable.model.Note;
@@ -46,7 +47,8 @@ public class NotesActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.notelist);
-        adapter = new NotesAdapter(NotesActivity.this, listView, R.layout.listview_notes_adapter, db.getNote());
+        String uid = TempActivity.textView1.getText().toString();
+        adapter = new NotesAdapter(NotesActivity.this, listView, R.layout.listview_notes_adapter, db.getNote(uid));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -117,7 +119,8 @@ public class NotesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         adapter.clear();
-        adapter.addAll(db.getNote());
+        String uid = TempActivity.textView1.getText().toString();
+        adapter.addAll(db.getNote(uid));
         adapter.notifyDataSetChanged();
     }
 }

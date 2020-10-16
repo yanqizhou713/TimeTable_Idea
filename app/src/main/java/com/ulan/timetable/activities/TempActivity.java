@@ -6,23 +6,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-
+import com.ulan.timetable.R;
 import com.ulan.timetable.adapters.FragmentsTabAdapter;
 import com.ulan.timetable.fragments.FridayFragment;
 import com.ulan.timetable.fragments.MondayFragment;
@@ -31,10 +31,8 @@ import com.ulan.timetable.fragments.SundayFragment;
 import com.ulan.timetable.fragments.ThursdayFragment;
 import com.ulan.timetable.fragments.TuesdayFragment;
 import com.ulan.timetable.fragments.WednesdayFragment;
-import com.ulan.timetable.R;
-import com.ulan.timetable.model.Appointment;
+import com.ulan.timetable.model.User;
 import com.ulan.timetable.utils.AlertDialogsHelper;
-import com.ulan.timetable.utils.BrowserUtil;
 import com.ulan.timetable.utils.DailyReceiver;
 import com.ulan.timetable.utils.DbHelper;
 
@@ -43,18 +41,27 @@ import java.util.Calendar;
 import static com.ulan.timetable.utils.BrowserUtil.openUrlInChromeCustomTab;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TempActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentsTabAdapter adapter;
     private ViewPager viewPager;
     private boolean switchSevenDays;
+    public static TextView textView, textView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initAll();
+        Intent intent = getIntent();
+        String userID = intent.getStringExtra("userID");
+        DbHelper db = new DbHelper(this);
+        String name = db.getUserName(userID);
+        TextView nameView = (TextView) findViewById(R.id.timetable);
+        nameView.setText(name + " Timetable");
     }
+
+
 
     private void initAll() {
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -84,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
-        TextView timetableView = (TextView) findViewById(R.id.timetable0);
-        timetableView.setText(userID);
+        textView = (TextView) findViewById(R.id.timetable0);
+        textView.setText(userID);
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         adapter.addFragment(new MondayFragment(), getResources().getString(R.string.monday));
@@ -97,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager.setCurrentItem(day == 1 ? 6 : day-2, true);
         tabLayout.setupWithViewPager(viewPager);
     }
+
 
     private void changeFragments(boolean isChecked) {
         if(isChecked) {
@@ -119,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_subject, null);
-        AlertDialogsHelper.getAddSubjectDialog(MainActivity.this, alertLayout, adapter, viewPager);
+        AlertDialogsHelper.getAddSubjectDialog(TempActivity.this, alertLayout, adapter, viewPager);
     }
 
     private void setupSevenDaysPref() {
@@ -171,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent settings = new Intent(TempActivity.this, SettingsActivity.class);
                 startActivity(settings);
                 return true;
             default:
@@ -182,6 +190,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         final NavigationView navigationView = findViewById(R.id.nav_view);
+        Intent intent = getIntent();
+        String userID = intent.getStringExtra("userID");
+        textView1 = (TextView) findViewById(R.id.timetable2);
+        textView1.setText(userID);
         switch (item.getItemId()) {
             case R.id.schoolwebsitemenu:
                 String schoolWebsite = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.KEY_SCHOOL_WEBSITE_SETTING, null);
@@ -201,31 +213,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openUrlInChromeCustomTab(getApplicationContext(), "https://www.linkedin.com/home/?originalSubdomain=au");
                 return true;
             case R.id.events:
-                Intent events = new Intent(MainActivity.this, EventsActivity.class);
+                Intent events = new Intent(TempActivity.this, EventsActivity.class);
                 startActivity(events);
                 return true;
             case R.id.contacts:
-                Intent teacher = new Intent(MainActivity.this, ContactsActivity.class);
+                Intent teacher = new Intent(TempActivity.this, ContactsActivity.class);
                 startActivity(teacher);
                 return true;
             case R.id.tasks:
-                Intent homework = new Intent(MainActivity.this, TasksActivity.class);
+                Intent homework = new Intent(TempActivity.this, TasksActivity.class);
                 startActivity(homework);
                 return true;
             case R.id.notes:
-                Intent note = new Intent(MainActivity.this, NotesActivity.class);
+                Intent note = new Intent(TempActivity.this, NotesActivity.class);
                 startActivity(note);
                 return true;
             case R.id.settings:
-                Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent settings = new Intent(TempActivity.this, SettingsActivity.class);
                 startActivity(settings);
                 return true;
             case R.id.appointments:
-                Intent appointments = new Intent(MainActivity.this, AppointmentActivity.class);
+                Intent appointments = new Intent(TempActivity.this, AppointmentActivity.class);
                 startActivity(appointments);
                 return true;
             case R.id.results:
-                Intent results = new Intent(MainActivity.this, ResultsActivity.class);
+                Intent results = new Intent(TempActivity.this, ResultsActivity.class);
                 startActivity(results);
                 return true;
             default:
