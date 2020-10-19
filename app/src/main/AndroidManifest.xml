@@ -30,7 +30,7 @@
 
         <activity
             android:name=".activities.SignUpActivity"
-            android:label="Signup">
+            android:label="@string/signup_label">
         </activity>
 
         <activity
@@ -60,20 +60,20 @@
             android:value=".activities.TasksActivity" />
         <activity
             android:name=".activities.NotesActivity"
-            android:label="Notes"
+            android:label="@string/notes"
             android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.NoteInfoActivity"
-            android:label="Notes"
+            android:label="@string/notes"
             android:parentActivityName=".activities.NotesActivity" />
         <activity
         android:name=".activities.ContactsActivity"
-        android:label="Contacts"
+        android:label="@string/contacts"
         android:parentActivityName=".activities.MainActivity" />
 
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="Settings"
+            android:label="@string/settings"
             android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -82,17 +82,17 @@
 
         <activity
             android:name=".activities.EventsActivity"
-            android:label="Events"
+            android:label="@string/events"
             android:parentActivityName=".activities.MainActivity" />
 
         <activity
             android:name=".activities.AppointmentActivity"
-            android:label="Appointments"
+            android:label="@string/appointments"
             android:parentActivityName=".activities.MainActivity" />
 
         <activity
             android:name=".activities.ResultsActivity"
-            android:label="Results"
+            android:label="@string/results"
             android:parentActivityName=".activities.MainActivity" />
 
         <receiver

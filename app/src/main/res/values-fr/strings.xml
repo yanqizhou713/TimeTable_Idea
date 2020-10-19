@@ -133,11 +133,13 @@
     <string name="twitter">Twitter</string>
     <string name="facebook_setting">Changer le site Facebook</string>
     <string name="twitter_setting">Changer de site Web Twitter</string>
-    <string name="linkedin">Linkedin</string>
+    <string name="linkedin">LinkedIn</string>
     <string name="userID_dialog">Carte d\'étudiant:</string>
     <string name="semester">Semestre</string>
     <string name="score">But</string>
     <string name="results">Résultats</string>
+    <string name="signup_label">S\'inscrire</string>
+    <string name="settings">Réglages</string>
 
 
 </resources>
